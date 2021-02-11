@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "id": "eventToProfilePropertyAction",
+    "name": "eventToProfilePropertyAction",
+    "description": "",
+    "systemTags": [
+      "profileTags",
+      "event"
+    ],
+    "readOnly": true
+  },
+  "actionExecutor": "eventToProfileProperty",
+  "parameters": [
+    {
+      "id": "eventPropertyName",
+      "type": "string",
+      "multivalued": false
+    },
+    {
+      "id": "profilePropertyName",
+      "type": "string",
+      "multivalued": false
+    }
+  ]
+}

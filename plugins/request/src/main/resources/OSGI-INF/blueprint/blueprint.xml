@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Licensed to the Apache Software Foundation (ASF) under one or more
+  ~ contributor license agreements.  See the NOTICE file distributed with
+  ~ this work for additional information regarding copyright ownership.
+  ~ The ASF licenses this file to You under the Apache License, Version 2.0
+  ~ (the "License"); you may not use this file except in compliance with
+  ~ the License.  You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<blueprint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+           xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+           http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0 http://aries.apache.org/schemas/blueprint-cm/blueprint-cm-1.1.0.xsd">
+
+    <cm:property-placeholder persistent-id="org.apache.unomi.plugins.request"
+                             update-strategy="reload">
+        <cm:default-properties>
+            <cm:property name="request.ipDatabase.location" value="file:${karaf.etc}/GeoIP2-City.mmdb"/>
+
+            <cm:property name="defaultSessionCountryCode" value="CH"/>
+            <cm:property name="defaultSessionCountryName" value="Switzerland"/>
+            <cm:property name="defaultSessionCity" value="Geneva"/>
+            <cm:property name="defaultSessionAdminSubDiv1" value="2660645"/>
+            <cm:property name="defaultSessionAdminSubDiv2" value="6458783"/>
+            <cm:property name="defaultSessionIsp" value="Cablecom"/>
+            <cm:property name="defaultLatitude" value="46.1884341"/>
+            <cm:property name="defaultLongitude" value="6.1282508"/>
+
+        </cm:default-properties>
+    </cm:property-placeholder>
+
+    <!-- Action executors -->
+
+    <bean id="requestHeaderToProfilePropertyActionImpl"
+          class="org.apache.unomi.plugins.request.actions.RequestHeaderToProfilePropertyAction">
+    </bean>
+    <service id="requestHeaderToProfilePropertyAction" ref="requestHeaderToProfilePropertyActionImpl"
+             interface="org.apache.unomi.api.actions.ActionExecutor">
+        <service-properties>
+            <entry key="actionExecutorId" value="requestHeaderToProfileProperty"/>
+        </service-properties>
+    </service>
+
+    <bean id="requestParameterToProfilePropertyActionImpl"
+          class="org.apache.unomi.plugins.request.actions.RequestParameterToProfilePropertyAction">
+    </bean>
+    <service id="RequestParameterToProfilePropertyAction" ref="requestParameterToProfilePropertyActionImpl"
+             interface="org.apache.unomi.api.actions.ActionExecutor">
+        <service-properties>
+            <entry key="actionExecutorId" value="requestParameterToProfileProperty"/>
+        </service-properties>
+    </service>
+
+    <service interface="org.apache.unomi.api.actions.ActionExecutor">
+        <service-properties>
+            <entry key="actionExecutorId" value="setRemoteHostInfo"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.request.actions.SetRemoteHostInfoAction"
+              init-method="postConstruct">
+            <property name="userAgentDetectorService" ref="userAgentDetectorServiceImpl"/>
+
+            <property name="pathToGeoLocationDatabase" value="${request.ipDatabase.location}"/>
+
+            <property name="defaultSessionCountryCode" value="${defaultSessionCountryCode}"/>
+            <property name="defaultSessionCountryName" value="${defaultSessionCountryName}"/>
+            <property name="defaultSessionCity" value="${defaultSessionCity}"/>
+            <property name="defaultSessionAdminSubDiv1" value="${defaultSessionAdminSubDiv1}"/>
+            <property name="defaultSessionAdminSubDiv2" value="${defaultSessionAdminSubDiv2}"/>
+            <property name="defaultSessionIsp" value="${defaultSessionIsp}"/>
+            <property name="defaultLatitude" value="${defaultLatitude}"/>
+            <property name="defaultLongitude" value="${defaultLongitude}"/>
+
+        </bean>
+    </service>
+
+    <bean id="userAgentDetectorServiceImpl" class="org.apache.unomi.plugins.request.useragent.UserAgentDetectorServiceImpl"
+          init-method="postConstruct" destroy-method="preDestroy">
+    </bean>
+
+</blueprint>

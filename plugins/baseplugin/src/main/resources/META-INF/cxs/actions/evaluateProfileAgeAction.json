@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "id": "evaluateProfileAgeAction",
+    "name": "evaluateProfileAgeAction",
+    "description": "",
+    "systemTags": [
+      "profileTags",
+      "event"
+    ],
+    "readOnly": true
+  },
+  "actionExecutor": "evaluateProfileAge",
+  "parameters": [
+  ]
+}

@@ -1,0 +1,15 @@
+{
+    "metadata": {
+        "id": "pageReferringURL",
+        "name": "Previous page URL",
+        "systemTags": [
+            "properties",
+            "sessionProperties",
+            "technicalSessionProperties"
+        ]
+    },
+    "type": "string",
+    "defaultValue": "",
+    "automaticMappingsFrom": [ ],
+    "rank": "108.0"
+}

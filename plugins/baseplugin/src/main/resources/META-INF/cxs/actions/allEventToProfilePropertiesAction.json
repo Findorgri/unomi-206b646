@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "id": "allEventToProfilePropertiesAction",
+    "name": "allEventToProfilePropertiesAction",
+    "description": "",
+    "systemTags": [
+      "profileTags",
+      "event"
+    ],
+    "readOnly": true
+  },
+  "actionExecutor": "allEventToProfileProperties",
+  "parameters": [
+  ]
+}

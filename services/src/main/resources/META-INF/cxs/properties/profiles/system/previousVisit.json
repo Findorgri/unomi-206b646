@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "id": "previousVisit",
+    "name": "Previous visit",
+    "systemTags": [
+      "properties",
+      "profileProperties",
+      "systemProfileProperties"
+    ]
+  },
+  "type": "date",
+  "defaultValue": "",
+  "automaticMappingsFrom": [ ],
+  "mergeStrategy": "mostRecentMergeStrategy",
+  "rank": "103.1",
+  "protected": true
+}

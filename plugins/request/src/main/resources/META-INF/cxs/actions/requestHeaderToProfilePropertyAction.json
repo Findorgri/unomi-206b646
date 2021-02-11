@@ -1,0 +1,35 @@
+{
+  "metadata": {
+    "id": "requestHeaderToProfilePropertyAction",
+    "name": "requestHeaderToProfilePropertyAction",
+    "description": "",
+    "systemTags": [
+      "profileTags",
+      "event"
+    ],
+    "readOnly": true
+  },
+  "actionExecutor": "requestHeaderToProfileProperty",
+  "parameters": [
+    {
+      "id": "requestHeaderName",
+      "type": "string",
+      "multivalued": false
+    },
+    {
+      "id": "profilePropertyName",
+      "type": "string",
+      "multivalued": false
+    },
+    {
+      "id": "sessionPropertyName",
+      "type": "string",
+      "multivalued": false
+    },
+    {
+      "id": "storeAsList",
+      "type": "boolean",
+      "multivalued": false
+    }
+  ]
+}

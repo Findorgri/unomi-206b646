@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "id": "setEventOccurenceCountAction",
+    "name": "setEventOccurenceCountAction",
+    "description": "",
+    "systemTags": [
+      "profileTags",
+      "demographic"
+    ],
+    "readOnly": true
+  },
+  "actionExecutor": "setEventOccurenceCount",
+  "parameters": [
+    {
+      "id": "pastEventCondition",
+      "type": "condition",
+      "multivalued": false
+    }
+  ]
+}

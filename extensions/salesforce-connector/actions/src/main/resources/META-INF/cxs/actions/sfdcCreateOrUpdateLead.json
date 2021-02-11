@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "id": "sfdcCreateOrUpdateLeadAction",
+    "name": "sfdcCreateOrUpdateLeadAction",
+    "description": "",
+    "systemTags": [
+      "profileTags",
+      "demographic",
+      "availableToEndUser"
+    ],
+    "readOnly": true
+  },
+  "actionExecutor": "sfdcCreateOrUpdateLead",
+  "parameters": [
+  ]
+}

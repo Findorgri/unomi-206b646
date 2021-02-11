@@ -1,0 +1,15 @@
+{
+    "metadata": {
+        "id": "jobTitle",
+        "name": "Job Title",
+        "systemTags": [
+            "properties",
+            "profileProperties",
+            "workProfileProperties"
+        ]
+    },
+    "type": "string",
+    "defaultValue": "",
+    "automaticMappingsFrom": [ ],
+    "rank": "602.0"
+}

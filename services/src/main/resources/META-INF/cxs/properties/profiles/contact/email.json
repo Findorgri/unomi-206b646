@@ -1,0 +1,16 @@
+{
+    "metadata": {
+        "id": "email",
+        "name": "Email",
+        "systemTags": [
+            "properties",
+            "profileProperties",
+            "contactProfileProperties",
+            "personalIdentifierProperties"
+        ]
+    },
+    "type": "email",
+    "defaultValue": "",
+    "automaticMappingsFrom": [ ],
+    "rank": "301.0"
+}

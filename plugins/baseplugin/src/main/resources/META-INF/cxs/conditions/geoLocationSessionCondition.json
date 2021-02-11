@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "id": "geoLocationSessionCondition",
+    "name": "geoLocationSessionCondition",
+    "description": "",
+    "systemTags": [
+      "profileTags",
+      "geographic",
+      "condition",
+      "sessionCondition"
+    ],
+    "readOnly": true
+  },
+  "parentCondition": {
+    "type": "booleanCondition",
+    "parameterValues": {
+      "operator": "and",
+      "subConditions": [
+        {
+          "type": "profilePropertyCondition",
+          "parameterValues": {
+            "propertyName": "properties.sessionCountryCode",
+            "propertyValue": "parameter::country",
+            "comparisonOperator": "equals"
+          }
+        },
+        {
+          "type": "profilePropertyCondition",
+          "parameterValues": {
+            "propertyName": "properties.sessionAdminSubDiv1",
+            "propertyValue": "parameter::admin1",
+            "comparisonOperator": "equals"
+          }
+        },
+        {
+          "type": "profilePropertyCondition",
+          "parameterValues": {
+            "propertyName": "properties.sessionAdminSubDiv2",
+            "propertyValue": "parameter::admin2",
+            "comparisonOperator": "equals"
+          }
+        },
+        {
+          "type": "profilePropertyCondition",
+          "parameterValues": {
+            "propertyName": "properties.sessionCityId",
+            "propertyValue": "parameter::city",
+            "comparisonOperator": "equals"
+          }
+        }
+      ]
+    }
+  },
+  "parameters": [
+    {
+      "id": "country",
+      "type": "string"
+    },
+    {
+      "id": "admin1",
+      "type": "string"
+    },
+    {
+      "id": "admin2",
+      "type": "string"
+    },
+    {
+      "id": "city",
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+    "persona": {
+        "itemId": "europeanVisitor",
+        "properties": {
+            "description": "Represents a visitor browsing from Europe (Switzerland)",
+            "firstName": "European",
+            "lastName": "Visitor"
+        },
+        "segments": []
+    },
+    "sessions": [ {
+        "itemId": "51c8e9a8-3db6-41f8-9569-057c339e3017",
+        "profileId": "europeanVisitor",
+        "properties": {
+            "operatingSystemName": "OS X 10.9 Mavericks",
+            "sessionCountryName": "Switzerland",
+            "location": {
+                "lat":46.1884341,
+                "lon":6.1282508
+            },
+        "userAgentVersion": "37.0.2062.120",
+            "sessionCountryCode": "CH",
+            "deviceCategory": "Personal computer",
+            "operatingSystemFamily": "OS X",
+            "userAgentName": "Chrome",
+            "sessionCity": "Lausanne"
+        },
+        "timeStamp": "2014-09-18T11:40:54Z",
+        "lastEventDate": "2014-09-18T11:40:59Z",
+        "duration": 4790
+    } ]
+}

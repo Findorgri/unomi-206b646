@@ -1,0 +1,92 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+Building Apache Unomi
+=====================
+
+Initial Setup
+-------------
+
+1) Install J2SE 8.0 SDK (or later), which can be downloaded from
+   http://www.oracle.com/technetwork/java/javase/downloads/index.html
+
+2) Make sure that your JAVA_HOME environment variable is set to the newly installed
+   JDK location, and that your PATH includes %JAVA_HOME%\bin (windows) or
+   $JAVA_HOME$/bin (unix).
+
+3) Install Maven 3.0.3 (or later), which can be downloaded from
+   http://maven.apache.org/download.html. Make sure that your PATH includes
+   the MVN_HOME/bin directory.
+
+
+Building
+--------
+
+1) Change to the top level directory of Apache Unomi source distribution.
+2) Run
+
+         $> mvn clean install
+
+   This will compile Apache Unomi and run all of the tests in the
+   Apache Unomi source distribution. Alternatively, you can run
+
+         $> mvn -P \!integration-tests,\!performance-tests clean install
+
+   This will compile Apache Unomi without running the tests and takes less
+   time to build.
+
+3) The distributions will be available under "package/target" directory.
+
+Updating the website
+--------------------
+
+We provide two scripts to generate the website and upload the modifications
+to the live SVN repository. To generate the website and check if everything is in
+place simply launch:
+
+    ./generate-site.sh
+
+The generated site will then be in the target/site directory
+
+Once it is ready to be published to the live site, simply use the following
+command:
+
+    ./generate-site-and-upload.sh SVNusername SVNpassword
+
+Where the required username and password have the proper credentials for the SVN
+Apache repository.
+
+JGitFlow
+--------
+
+We now can use the [JGitFlow Maven plugin](http://jgitflow.bitbucket.org) to make it easier to work with feature,
+hotfix and other types of branches.
+
+For example, to start a feature branch, simply use
+
+    mvn jgitflow:feature-start
+
+This will prompt you for the feature name, and then create a feature branch and update
+all the POMs to have a version that contains the feature name. This makes it then a lot
+easier to integrate with continuous integration systems to generate builds for the
+feature branch.
+
+Once the feature is completed you can use
+
+    mvn jgitflow:feature-finish
+
+To merge the branch into master.

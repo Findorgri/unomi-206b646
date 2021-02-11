@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "id": "notCondition",
+    "name": "notCondition",
+    "description": "",
+    "systemTags": [
+      "profileTags",
+      "logical",
+      "condition",
+      "profileCondition",
+      "eventCondition",
+      "sessionCondition",
+      "sourceEventCondition"
+    ],
+    "readOnly": true
+  },
+  "conditionEvaluator": "notConditionEvaluator",
+  "queryBuilder": "notConditionESQueryBuilder",
+
+  "parameters": [
+    {
+      "id": "subCondition",
+      "type": "Condition",
+      "multivalued": false
+    }
+  ]
+}

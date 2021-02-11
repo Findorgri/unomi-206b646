@@ -1,0 +1,38 @@
+{
+  "metadata": {
+    "id": "sessionDurationCondition",
+    "name": "sessionDurationCondition",
+    "description": "",
+    "systemTags": [
+      "profileTags",
+      "event",
+      "condition",
+      "sessionCondition"
+    ],
+    "readOnly": true
+  },
+  "parentCondition": {
+    "type": "sessionPropertyCondition",
+    "parameterValues": {
+      "propertyName": "duration",
+      "comparisonOperator": "between",
+      "propertyValuesInteger": [
+        "script::minimumDuration*1000",
+        "script::maximumDuration*1000"
+      ]
+    }
+  },
+
+  "parameters": [
+    {
+      "id": "minimumDuration",
+      "type": "integer",
+      "multivalued": false
+    },
+    {
+      "id": "maximumDuration",
+      "type": "integer",
+      "multivalued": false
+    }
+  ]
+}

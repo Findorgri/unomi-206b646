@@ -1,0 +1,25 @@
+{
+    "metadata": {
+      "id": "nbOfVisits",
+      "name": "Number of visits",
+      "systemTags": [
+        "properties",
+        "profileProperties",
+        "systemProfileProperties"
+      ]
+    },
+    "type": "integer",
+    "defaultValue": "",
+    "automaticMappingsFrom": [ ],
+    "numericRanges": [
+       {"key":"*_5", "to" : 5 },
+       {"key":"5_10", "from" : 5, "to" : 10 },
+       {"key":"10_20", "from" : 10, "to" : 20 },
+       {"key":"20_40", "from" : 20, "to" : 40 },
+       {"key":"40_80", "from" : 40, "to" : 80 },
+       {"key":"100_*", "from" : 100 }
+    ],
+    "mergeStrategy": "addMergeStrategy",
+    "rank": "101.0",
+    "protected": true
+}

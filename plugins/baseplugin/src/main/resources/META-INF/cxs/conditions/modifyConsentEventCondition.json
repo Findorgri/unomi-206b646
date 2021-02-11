@@ -1,0 +1,58 @@
+{
+  "metadata": {
+    "id": "modifyConsentEventCondition",
+    "name": "modifyConsentEventCondition",
+    "description": "Used to match status modifications on a specific consent",
+    "systemTags": [
+      "profileTags",
+      "event",
+      "condition",
+      "eventCondition"
+    ],
+    "readOnly": true
+  },
+  "parentCondition": {
+    "type": "booleanCondition",
+    "parameterValues": {
+      "operator": "and",
+      "subConditions": [
+        {
+          "type": "eventTypeCondition",
+          "parameterValues": {
+            "eventTypeId": "modifyConsent"
+          }
+        },
+        {
+          "type": "eventPropertyCondition",
+          "parameterValues": {
+            "propertyName": "properties.consent.typeIdentifier",
+            "comparisonOperator": "equals",
+            "propertyValue": "parameter::consentTypeId"
+          }
+        },
+        {
+          "type": "eventPropertyCondition",
+          "parameterValues": {
+            "propertyName": "properties.consent.status",
+            "comparisonOperator": "equals",
+            "propertyValue": "parameter::consentStatus"
+          }
+        }
+      ]
+    }
+
+  },
+
+  "parameters": [
+    {
+      "id": "consentTypeId",
+      "type": "String",
+      "multivalued": false
+    },
+    {
+      "id": "consentStatus",
+      "type": "String",
+      "multivalued": false
+    }
+  ]
+}

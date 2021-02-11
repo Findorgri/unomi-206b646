@@ -1,0 +1,58 @@
+{
+  "metadata": {
+    "id": "videoViewEventCondition",
+    "name": "videoViewEventCondition",
+    "description": "",
+    "systemTags": [
+      "profileTags",
+      "event",
+      "condition",
+      "eventCondition",
+      "usableInPastEventCondition",
+      "trackedCondition"
+    ],
+    "readOnly": true
+  },
+  "parentCondition": {
+    "type": "booleanCondition",
+    "parameterValues": {
+      "subConditions": [
+        {
+          "type": "eventTypeCondition",
+          "parameterValues": {
+            "eventTypeId": "video"
+          }
+        },
+        {
+          "type": "eventPropertyCondition",
+          "parameterValues": {
+            "propertyName": "source.properties.pageInfo.pagePath",
+            "propertyValue": "parameter::pagePath",
+            "comparisonOperator": "equals"
+          }
+        },
+        {
+          "type": "eventPropertyCondition",
+          "parameterValues": {
+            "propertyName": "target.itemId",
+            "propertyValue": "parameter::videoId",
+            "comparisonOperator": "equals"
+          }
+        }
+      ],
+      "operator": "and"
+    }
+  },
+  "parameters": [
+    {
+      "id": "videoId",
+      "type": "String",
+      "multivalued": false
+    },
+    {
+      "id": "pagePath",
+      "type": "String",
+      "multivalued": false
+    }
+  ]
+}

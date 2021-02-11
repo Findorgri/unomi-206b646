@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "id": "hoverEventCondition",
+    "name": "hoverEventCondition",
+    "description": "",
+    "systemTags": [
+      "profileTags",
+      "event",
+      "condition",
+      "eventCondition",
+      "usableInPastEventCondition"
+    ],
+    "readOnly": true
+  },
+  "queryBuilder": "hoverEventConditionESQueryBuilder",
+  "parameters": [
+    {
+      "id": "targetId",
+      "type": "string",
+      "multivalued": false
+    },
+    {
+      "id": "targetPath",
+      "type": "string",
+      "multivalued": false
+    }
+  ]
+}

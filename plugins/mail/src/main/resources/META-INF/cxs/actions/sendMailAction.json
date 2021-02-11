@@ -1,0 +1,64 @@
+{
+  "metadata": {
+    "id": "sendMailAction",
+    "name": "sendMailAction",
+    "description": "",
+    "systemTags": [
+      "profileTags",
+      "event",
+      "availableToEndUser",
+      "allowMultipleInstances"
+    ],
+    "readOnly": true
+  },
+  "actionExecutor": "sendMail",
+  "parameters": [
+    {
+      "id": "notificationType",
+      "type": "string",
+      "multivalued": false
+    },
+    {
+      "id": "notificationTypeId",
+      "type": "string",
+      "multivalued": false
+    },
+    {
+      "id": "notifyOncePerProfile",
+      "type": "boolean",
+      "multivalued": false,
+      "defaultValue": false
+    },
+    {
+      "id": "from",
+      "type": "string",
+      "multivalued": false
+    },
+    {
+      "id": "to",
+      "type": "string",
+      "multivalued": false
+    },
+    {
+      "id": "cc",
+      "type": "string",
+      "multivalued": false
+    },
+    {
+      "id": "bcc",
+      "type": "string",
+      "multivalued": false
+    },
+    {
+      "id": "subject",
+      "type": "string",
+      "multivalued": false
+    },
+    {
+      "id": "template",
+      "type": "string",
+      "multivalued": false,
+      "defaultValue": "Hello $profile.properties.(\"j:firstName\")$ $profile.properties.(\"j:lastName\")$,\nHow are you doing today?"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "id": "trainingNotifAction",
+    "name": "Training Action",
+    "description": "",
+    "systemTags": [
+      "profileTags",
+      "event"
+    ],
+    "readOnly": true
+  },
+  "actionExecutor": "training",
+  "parameters": []
+}

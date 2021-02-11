@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "id": "eventTypeCondition",
+    "name": "eventTypeCondition",
+    "description": "",
+    "systemTags": [
+      "profileTags",
+      "event",
+      "condition",
+      "eventCondition"
+    ],
+    "readOnly": true
+  },
+  "parentCondition": {
+    "type": "eventPropertyCondition",
+    "parameterValues": {
+      "propertyName": "eventType",
+      "propertyValue": "parameter::eventTypeId",
+      "comparisonOperator": "equals"
+    }
+  },
+  "parameters": [
+    {
+      "id": "eventTypeId",
+      "type": "String",
+      "multivalued": false
+    }
+  ]
+}

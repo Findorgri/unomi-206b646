@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "id": "evaluateProfileSegmentsAction",
+    "name": "evaluateProfileSegmentsAction",
+    "description": "",
+    "systemTags": [
+      "profileTags",
+      "event"
+    ],
+    "readOnly": true
+  },
+  "actionExecutor": "evaluateProfileSegments",
+  "parameters": [
+  ]
+}

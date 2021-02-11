@@ -1,0 +1,34 @@
+{
+    "persona": {
+        "itemId": "usVisitor",
+        "properties": {
+            "description": "Represents a visitor browsing from inside the continental US",
+            "firstName": "U.S.",
+            "lastName": "Visitor"
+        },
+        "segments": []
+    },
+    "sessions": [
+        {
+            "itemId": "aa3b04bd-8f4d-4a07-8e96-d33ffa04d3d9",
+            "profileId": "usVisitor",
+            "properties": {
+                "operatingSystemName": "OS X 10.9 Mavericks",
+                "sessionCountryName": "United States",
+                "location": {
+                    "lat":37.422,
+                    "lon":-122.084058
+                },
+                "userAgentVersion": "37.0.2062.120",
+                "sessionCountryCode": "US",
+                "deviceCategory": "Personal computer",
+                "operatingSystemFamily": "OS X",
+                "userAgentName": "Chrome",
+                "sessionCity": "Mountain View"
+            },
+            "timeStamp": "2014-09-18T11:40:54Z",
+            "lastEventDate": "2014-09-18T11:40:59Z",
+            "duration": 4790
+        }
+    ]
+}

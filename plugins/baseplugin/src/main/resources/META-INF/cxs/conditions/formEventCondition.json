@@ -1,0 +1,58 @@
+{
+  "metadata": {
+    "id": "formEventCondition",
+    "name": "formEventCondition",
+    "description": "",
+    "systemTags": [
+      "profileTags",
+      "event",
+      "condition",
+      "eventCondition",
+      "usableInPastEventCondition",
+      "trackedCondition"
+    ],
+    "readOnly": true
+  },
+  "parentCondition": {
+    "type": "booleanCondition",
+    "parameterValues": {
+      "subConditions": [
+        {
+          "type": "eventTypeCondition",
+          "parameterValues": {
+            "eventTypeId": "form"
+          }
+        },
+        {
+          "type": "eventPropertyCondition",
+          "parameterValues": {
+            "propertyName": "target.itemId",
+            "propertyValue": "parameter::formId",
+            "comparisonOperator": "equals"
+          }
+        },
+        {
+          "type": "eventPropertyCondition",
+          "parameterValues": {
+            "propertyName": "source.properties.pageInfo.pagePath",
+            "propertyValue": "parameter::pagePath",
+            "comparisonOperator": "equals"
+          }
+        }
+      ],
+      "operator": "and"
+    }
+  },
+  "parameters": [
+    {
+      "id": "formId",
+      "type": "string",
+      "multivalued": false
+    },
+    {
+      "id": "pagePath",
+      "type": "string",
+      "multivalued": false
+    }
+  ]
+}

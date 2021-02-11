@@ -1,0 +1,15 @@
+{
+    "metadata": {
+        "id": "deviceCategory",
+        "name": "Device category",
+        "systemTags": [
+            "properties",
+            "sessionProperties",
+            "technicalSessionProperties"
+        ]
+    },
+    "type": "string",
+    "defaultValue": "",
+    "automaticMappingsFrom": [ ],
+    "rank": "105.0"
+}

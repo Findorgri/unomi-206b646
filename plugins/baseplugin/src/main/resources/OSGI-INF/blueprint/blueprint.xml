@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Licensed to the Apache Software Foundation (ASF) under one or more
+  ~ contributor license agreements.  See the NOTICE file distributed with
+  ~ this work for additional information regarding copyright ownership.
+  ~ The ASF licenses this file to You under the Apache License, Version 2.0
+  ~ (the "License"); you may not use this file except in compliance with
+  ~ the License.  You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<blueprint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+           xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+                               http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0 http://aries.apache.org/schemas/blueprint-cm/blueprint-cm-1.1.0.xsd">
+
+    <cm:property-placeholder persistent-id="org.apache.unomi.plugins.base"
+                             update-strategy="reload" placeholder-prefix="${base.">
+        <cm:default-properties>
+            <cm:property name="useEventToUpdateProfile" value="false" />
+            <cm:property name="usePropertyConditionOptimizations" value="true" />
+        </cm:default-properties>
+    </cm:property-placeholder>
+
+    <cm:property-placeholder persistent-id="org.apache.unomi.persistence.elasticsearch"
+                             update-strategy="reload" placeholder-prefix="${es.">
+        <cm:default-properties>
+            <cm:property name="maximumIdsQueryCount" value="5000"/>
+            <cm:property name="aggregateQueryBucketSize" value="5000"/>
+        </cm:default-properties>
+    </cm:property-placeholder>
+
+    <reference id="definitionsService" interface="org.apache.unomi.api.services.DefinitionsService"/>
+    <reference id="persistenceService" interface="org.apache.unomi.persistence.spi.PersistenceService"/>
+    <reference id="profileService" interface="org.apache.unomi.api.services.ProfileService"/>
+    <reference id="privacyService" interface="org.apache.unomi.api.services.PrivacyService"/>
+    <reference id="segmentService" interface="org.apache.unomi.api.services.SegmentService"/>
+    <reference id="eventService" interface="org.apache.unomi.api.services.EventService"/>
+    <reference id="configSharingService" interface="org.apache.unomi.api.services.ConfigSharingService" />
+
+    <service
+            interface="org.apache.unomi.persistence.elasticsearch.conditions.ConditionESQueryBuilder">
+        <service-properties>
+            <entry key="queryBuilderId" value="booleanConditionESQueryBuilder"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.conditions.BooleanConditionESQueryBuilder"/>
+    </service>
+
+    <service
+            interface="org.apache.unomi.persistence.elasticsearch.conditions.ConditionESQueryBuilder">
+        <service-properties>
+            <entry key="queryBuilderId" value="notConditionESQueryBuilder"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.conditions.NotConditionESQueryBuilder"/>
+    </service>
+
+    <service
+            interface="org.apache.unomi.persistence.elasticsearch.conditions.ConditionESQueryBuilder">
+        <service-properties>
+            <entry key="queryBuilderId" value="matchAllConditionESQueryBuilder"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.conditions.MatchAllConditionESQueryBuilder"/>
+    </service>
+
+    <service
+            interface="org.apache.unomi.persistence.elasticsearch.conditions.ConditionESQueryBuilder">
+        <service-properties>
+            <entry key="queryBuilderId" value="propertyConditionESQueryBuilder"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.conditions.PropertyConditionESQueryBuilder"/>
+    </service>
+
+    <service
+            interface="org.apache.unomi.persistence.elasticsearch.conditions.ConditionESQueryBuilder">
+        <service-properties>
+            <entry key="queryBuilderId" value="geoLocationByPointSessionConditionESQueryBuilder"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.conditions.GeoLocationByPointSessionConditionESQueryBuilder"/>
+    </service>
+
+    <service
+            interface="org.apache.unomi.persistence.elasticsearch.conditions.ConditionESQueryBuilder">
+        <service-properties>
+            <entry key="queryBuilderId" value="sourceEventPropertyConditionESQueryBuilder"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.conditions.SourceEventPropertyConditionESQueryBuilder"/>
+    </service>
+
+    <service
+            interface="org.apache.unomi.persistence.elasticsearch.conditions.ConditionESQueryBuilder">
+        <service-properties>
+            <entry key="queryBuilderId" value="pastEventConditionESQueryBuilder"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.conditions.PastEventConditionESQueryBuilder">
+            <property name="definitionsService" ref="definitionsService"/>
+            <property name="persistenceService" ref="persistenceService"/>
+            <property name="segmentService" ref="segmentService"/>
+            <property name="maximumIdsQueryCount" value="${es.maximumIdsQueryCount}"/>
+            <property name="aggregateQueryBucketSize" value="${es.aggregateQueryBucketSize}"/>
+        </bean>
+    </service>
+
+
+    <!-- Condition evaluators -->
+    <service interface="org.apache.unomi.persistence.elasticsearch.conditions.ConditionEvaluator">
+        <service-properties>
+            <entry key="conditionEvaluatorId" value="booleanConditionEvaluator"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.conditions.BooleanConditionEvaluator"/>
+    </service>
+
+    <service interface="org.apache.unomi.persistence.elasticsearch.conditions.ConditionEvaluator">
+        <service-properties>
+            <entry key="conditionEvaluatorId" value="notConditionEvaluator"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.conditions.NotConditionEvaluator"/>
+    </service>
+
+    <service interface="org.apache.unomi.persistence.elasticsearch.conditions.ConditionEvaluator">
+        <service-properties>
+            <entry key="conditionEvaluatorId" value="propertyConditionEvaluator"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.conditions.PropertyConditionEvaluator">
+            <property name="usePropertyConditionOptimizations" value="${base.usePropertyConditionOptimizations}" />
+        </bean>
+    </service>
+
+    <service interface="org.apache.unomi.persistence.elasticsearch.conditions.ConditionEvaluator">
+        <service-properties>
+            <entry key="conditionEvaluatorId" value="matchAllConditionEvaluator"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.conditions.MatchAllConditionEvaluator"/>
+    </service>
+
+    <service interface="org.apache.unomi.persistence.elasticsearch.conditions.ConditionEvaluator">
+        <service-properties>
+            <entry key="conditionEvaluatorId" value="geoLocationByPointSessionConditionEvaluator"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.conditions.GeoLocationByPointSessionConditionEvaluator"/>
+    </service>
+
+    <service interface="org.apache.unomi.persistence.elasticsearch.conditions.ConditionEvaluator">
+        <service-properties>
+            <entry key="conditionEvaluatorId" value="sourceEventPropertyConditionEvaluator"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.conditions.SourceEventPropertyConditionEvaluator">
+            <property name="definitionsService" ref="definitionsService"/>
+        </bean>
+    </service>
+
+    <service
+            interface="org.apache.unomi.persistence.elasticsearch.conditions.ConditionEvaluator">
+        <service-properties>
+            <entry key="conditionEvaluatorId" value="pastEventConditionEvaluator"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.conditions.PastEventConditionEvaluator">
+            <property name="definitionsService" ref="definitionsService"/>
+            <property name="persistenceService" ref="persistenceService"/>
+        </bean>
+    </service>
+
+    <!-- Action executors -->
+
+    <service interface="org.apache.unomi.api.actions.ActionExecutor">
+        <service-properties>
+            <entry key="actionExecutorId" value="allEventToProfileProperties"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.actions.AllEventToProfilePropertiesAction">
+            <property name="profileService" ref="profileService"/>
+        </bean>
+    </service>
+
+    <service interface="org.apache.unomi.api.actions.ActionExecutor">
+        <service-properties>
+            <entry key="actionExecutorId" value="eventToProfileProperty"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.actions.EventToProfilePropertyAction"/>
+    </service>
+
+    <service interface="org.apache.unomi.api.actions.ActionExecutor">
+        <service-properties>
+            <entry key="actionExecutorId" value="setProperty"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.actions.SetPropertyAction">
+            <property name="eventService" ref="eventService"/>
+            <property name="useEventToUpdateProfile" value="${base.useEventToUpdateProfile}" />
+        </bean>
+    </service>
+
+    <service interface="org.apache.unomi.api.actions.ActionExecutor">
+        <service-properties>
+            <entry key="actionExecutorId" value="updateProperties"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.actions.UpdatePropertiesAction">
+            <property name="profileService" ref="profileService"/>
+            <property name="eventService" ref="eventService"/>
+        </bean>
+    </service>
+
+    <service interface="org.apache.unomi.api.actions.ActionExecutor">
+        <service-properties>
+            <entry key="actionExecutorId" value="modifyConsent"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.actions.ModifyConsentAction">
+        </bean>
+    </service>
+
+    <service interface="org.apache.unomi.api.actions.ActionExecutor">
+        <service-properties>
+            <entry key="actionExecutorId" value="evaluateProfileSegments"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.actions.EvaluateProfileSegmentsAction">
+            <property name="segmentService" ref="segmentService"/>
+        </bean>
+    </service>
+
+    <service interface="org.apache.unomi.api.actions.ActionExecutor">
+        <service-properties>
+            <entry key="actionExecutorId" value="evaluateProfileAge"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.actions.EvaluateProfileAgeAction"/>
+    </service>
+
+    <service interface="org.apache.unomi.api.actions.ActionExecutor">
+        <service-properties>
+            <entry key="actionExecutorId" value="setEventOccurenceCount"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.actions.SetEventOccurenceCountAction">
+            <property name="definitionsService" ref="definitionsService"/>
+            <property name="persistenceService" ref="persistenceService"/>
+        </bean>
+    </service>
+
+    <service interface="org.apache.unomi.api.actions.ActionExecutor">
+        <service-properties>
+            <entry key="actionExecutorId" value="sendEvent"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.actions.SendEventAction">
+            <property name="eventService" ref="eventService"/>
+        </bean>
+    </service>
+
+    <service interface="org.apache.unomi.api.actions.ActionExecutor">
+        <service-properties>
+            <entry key="actionExecutorId" value="mergeProfilesOnProperty"/>
+        </service-properties>
+        <bean class="org.apache.unomi.plugins.baseplugin.actions.MergeProfilesOnPropertyAction">
+            <property name="profileService" ref="profileService"/>
+            <property name="eventService" ref="eventService"/>
+            <property name="persistenceService" ref="persistenceService"/>
+            <property name="definitionsService" ref="definitionsService"/>
+            <property name="privacyService" ref="privacyService"/>
+            <property name="configSharingService" ref="configSharingService" />
+        </bean>
+    </service>
+
+</blueprint>

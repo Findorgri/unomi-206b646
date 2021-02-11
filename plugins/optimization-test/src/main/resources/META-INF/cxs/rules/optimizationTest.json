@@ -1,0 +1,24 @@
+{
+    "metadata": {
+        "id": "optimizationTest",
+        "name": "optimizationTest",
+        "description": "Copy variant id to session properties optimization_{optimizationId} = {variantId}"
+    },
+    "condition": {
+      "parameterValues": {
+        "eventTypeId": "optimizationTestEvent"
+      },
+      "type": "eventTypeCondition"
+    },
+    "actions": [
+        {
+          "parameterValues": {
+            "setPropertyName": "script::'properties.optimizationTest_'+event.target.itemId",
+            "setPropertyValue": "script::event.target.properties.variantId",
+            "storeInSession": true
+          },
+          "type": "setPropertyAction"
+        }
+    ]
+}
+

@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "id": "mergeProfilesOnPropertyAction",
+    "name": "mergeProfilesOnPropertyAction",
+    "description": "",
+    "systemTags": [
+      "profileTags",
+      "demographic"
+    ],
+    "readOnly": true
+  },
+  "actionExecutor": "mergeProfilesOnProperty",
+  "parameters": [
+    {
+      "id": "mergeProfilePropertyName",
+      "type": "string",
+      "multivalued": false
+    }
+  ]
+}

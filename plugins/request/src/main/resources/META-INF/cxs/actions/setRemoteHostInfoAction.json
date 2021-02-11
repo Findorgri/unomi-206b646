@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "id": "setRemoteHostInfoAction",
+    "name": "setRemoteHostInfoAction",
+    "description": "",
+    "systemTags": [
+      "profileTags",
+      "event"
+    ],
+    "readOnly": true
+  },
+  "actionExecutor": "setRemoteHostInfo",
+  "parameters": [
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "id": "booleanCondition",
+    "name": "booleanCondition",
+    "description": "",
+    "systemTags": [
+      "profileTags",
+      "logical",
+      "condition",
+      "profileCondition",
+      "eventCondition",
+      "sessionCondition",
+      "sourceEventCondition"
+    ],
+    "readOnly": true
+  },
+  "conditionEvaluator": "booleanConditionEvaluator",
+  "queryBuilder": "booleanConditionESQueryBuilder",
+  "parameters": [
+    {
+      "id": "operator",
+      "type": "String",
+      "multivalued": false,
+      "defaultValue": "and"
+    },
+    {
+      "id": "subConditions",
+      "type": "Condition",
+      "multivalued": true
+    }
+  ]
+}

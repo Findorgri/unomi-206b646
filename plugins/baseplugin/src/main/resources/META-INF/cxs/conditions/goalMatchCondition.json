@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "id": "goalMatchCondition",
+    "name": "goalMatchCondition",
+    "description": "",
+    "systemTags": [
+      "condition",
+      "profileCondition",
+      "profileTags",
+      "event"
+    ],
+    "readOnly": true
+  },
+  "parentCondition": {
+    "type": "profilePropertyCondition",
+    "parameterValues": {
+      "propertyName": "script::'systemProperties.goals.'+goalId+'TargetReached'",
+      "comparisonOperator": "parameter::comparisonOperator"
+    }
+  },
+
+  "parameters": [
+    {
+      "id": "goalId",
+      "type": "string",
+      "multivalued": false,
+      "defaultValue": ""
+    },
+    {
+      "id": "comparisonOperator",
+      "type": "string",
+      "multivalued": false,
+      "defaultValue": "exists"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+    "metadata": {
+        "id": "twitterId",
+        "name": "Twitter ID",
+        "systemTags": [
+            "properties",
+            "profileProperties",
+            "socialProfileProperties",
+            "personalIdentifierProperties"
+        ]
+    },
+    "type": "string",
+    "defaultValue": "",
+    "automaticMappingsFrom": [ ],
+    "rank": "404.0"
+}

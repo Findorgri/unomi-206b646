@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "id": "birthDate",
+    "name": "Birth Date",
+    "systemTags": [
+      "properties",
+      "profileProperties",
+      "personalProfileProperties"
+    ]
+  },
+  "type": "date",
+  "defaultValue": "",
+  "dateRanges": [
+    {"key":"*_10", "from": "now-10y/y" },
+    {"key":"10_20", "from": "now-20y/y", "to" : "now-10y/y" },
+    {"key":"20_30", "from": "now-30y/y", "to" : "now-20y/y"  },
+    {"key":"30_40", "from": "now-40y/y", "to" : "now-30y/y"  },
+    {"key":"40_50", "from": "now-50y/y", "to" : "now-40y/y"  },
+    {"key":"50_*", "to": "now-50y/y"}
+  ],
+  "automaticMappingsFrom": [ ],
+  "rank": "502.0"
+}
